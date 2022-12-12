@@ -1,0 +1,103 @@
+= 투두 리스트 애플리케이션
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+my-roki <anthonychangrok@gmail.com>
+
+v1.0.0, 2022.12.12
+
+***
+== TodoController
+
+=== 전체 todolist 조회
+
+.curl-request
+include::{snippets}/get-all-todo/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-all-todo/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-all-todo/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-all-todo/response-fields.adoc[]
+
+=== 개별 todolist 조회
+
+.curl-request
+include::{snippets}/get-todo/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-todo/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-todo/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-todo/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-todo/response-fields.adoc[]
+
+=== todo 추가
+
+.curl-request
+include::{snippets}/post-todo/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-todo/http-request.adoc[]
+
+.request-fields
+include::{snippets}/post-todo/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-todo/http-response.adoc[]
+
+.response-fields
+include::{snippets}/post-todo/response-fields.adoc[]
+
+=== todolist 수정
+
+.curl-request
+include::{snippets}/patch-todo/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-todo/http-request.adoc[]
+
+.request-fields
+include::{snippets}/patch-todo/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-todo/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-todo/response-fields.adoc[]
+
+=== 전체 todolist 삭제
+
+.curl-request
+include::{snippets}/delete-all-todo/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-all-todo/http-request.adoc[]
+
+.http-response
+include::{snippets}/delete-all-todo/http-response.adoc[]
+
+=== 개별 todolist 삭제
+
+.curl-request
+include::{snippets}/delete-todo/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-todo/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/delete-todo/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-todo/http-response.adoc[]

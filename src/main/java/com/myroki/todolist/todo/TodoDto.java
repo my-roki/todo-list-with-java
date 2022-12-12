@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 public class TodoDto {
     @Getter
+    @AllArgsConstructor
     public static class Post {
         @NotEmpty
         private String title;
@@ -21,6 +22,7 @@ public class TodoDto {
     }
 
     @Getter
+    @AllArgsConstructor
     public static class Patch {
         private String title;
 
