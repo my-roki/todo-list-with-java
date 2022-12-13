@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_전체_todolist_조회">1.1. 전체 todolist 조회</a></li>
 <li><a href="#_개별_todolist_조회">1.2. 개별 todolist 조회</a></li>
-<li><a href="#_todo_추가">1.3. todo 추가</a></li>
+<li><a href="#_todolist_추가">1.3. todolist 추가</a></li>
 <li><a href="#_todolist_수정">1.4. todolist 수정</a></li>
 <li><a href="#_전체_todolist_삭제">1.5. 전체 todolist 삭제</a></li>
 <li><a href="#_개별_todolist_삭제">1.6. 개별 todolist 삭제</a></li>
@@ -498,17 +498,19 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 183
+Content-Length: 257
 
 [ {
   "id" : 1,
   "title" : "자바 공부하기",
   "completed" : false,
+  "url" : "http://localhost:8080/1",
   "order" : 1
 }, {
   "id" : 2,
   "title" : "파이썬 공부하기",
   "completed" : false,
+  "url" : "http://localhost:8080/2",
   "order" : 2
 } ]</code></pre>
 </div>
@@ -547,6 +549,11 @@ Content-Length: 183
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].completed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">완료 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo url</p></td>
 </tr>
 </tbody>
 </table>
@@ -595,12 +602,13 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 87
+Content-Length: 124
 
 {
   "id" : 1,
   "title" : "자바 공부하기",
   "completed" : false,
+  "url" : "http://localhost:8080/1",
   "order" : 1
 }</code></pre>
 </div>
@@ -640,11 +648,16 @@ Content-Length: 87
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">완료 여부</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo url</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_todo_추가">1.3. todo 추가</h3>
+<h3 id="_todolist_추가">1.3. todolist 추가</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -696,14 +709,14 @@ Host: localhost:8080
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">할 일 제목</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Empty<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">우선 순위</p></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">우선 순위</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Null, min: 1, max: 4<br></p></td>
 </tr>
 </tbody>
 </table>
@@ -715,12 +728,13 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 87
+Content-Length: 124
 
 {
   "id" : 1,
   "title" : "자바 공부하기",
   "completed" : false,
+  "url" : "http://localhost:8080/1",
   "order" : 1
 }</code></pre>
 </div>
@@ -759,6 +773,11 @@ Content-Length: 87
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">완료 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo url</p></td>
 </tr>
 </tbody>
 </table>
@@ -816,21 +835,21 @@ Host: localhost:8080
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">할 일 제목</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">우선 순위</p></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">우선 순위</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">min: 1, max: 4<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">완료 여부</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -844,12 +863,13 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 86
+Content-Length: 123
 
 {
   "id" : 1,
   "title" : "자바 공부하기",
   "completed" : true,
+  "url" : "http://localhost:8080/1",
   "order" : 1
 }</code></pre>
 </div>
@@ -888,6 +908,11 @@ Content-Length: 86
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">완료 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo url</p></td>
 </tr>
 </tbody>
 </table>
@@ -967,7 +992,7 @@ Vary: Access-Control-Request-Headers</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2022-12-12 18:21:44 +0900
+Last updated 2022-12-13 21:37:05 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

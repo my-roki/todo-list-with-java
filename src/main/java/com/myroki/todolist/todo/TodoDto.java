@@ -1,8 +1,7 @@
 package com.myroki.todolist.todo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotEmpty;
@@ -34,7 +33,8 @@ public class TodoDto {
         private boolean completed;
     }
 
-    @Getter
+    @Data
+    @Builder
     @AllArgsConstructor
     public static class Response {
         private long id;
@@ -43,5 +43,6 @@ public class TodoDto {
         @JsonProperty("order")
         private Integer todoOrder;
         private boolean completed;
+        private String url;
     }
 }

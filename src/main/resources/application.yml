@@ -16,6 +16,8 @@ logging:
         orm:
           jpa: DEBUG
 server:
+  domain: http://localhost:8080/
+  port: 8080
   servlet:
     encoding:
       force-response: true

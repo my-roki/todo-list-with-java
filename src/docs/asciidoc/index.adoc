@@ -43,7 +43,7 @@ include::{snippets}/get-todo/http-response.adoc[]
 .response-fields
 include::{snippets}/get-todo/response-fields.adoc[]
 
-=== todo 추가
+=== todolist 추가
 
 .curl-request
 include::{snippets}/post-todo/curl-request.adoc[]

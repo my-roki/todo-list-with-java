@@ -50,12 +50,12 @@ public class TodoControllerRestDocs {
     void postList() throws Exception {
         // given
         TodoDto.Post post = new TodoDto.Post("자바 공부하기", 1);
-        TodoDto.Response response = new TodoDto.Response(1, "자바 공부하기", 1, false);
+        TodoDto.Response response = new TodoDto.Response(1, "자바 공부하기", 1, false, "http://localhost:8080/1");
         String content = gson.toJson(post).replace("todoOrder", "order"); // request body가 @JsonProperty 어노테이션의 적용을 받지 않O
 
         given(mapper.todoPostDtoToTodo(Mockito.any(TodoDto.Post.class))).willReturn(new Todo());
         given(todoService.createTodo(Mockito.any(Todo.class))).willReturn(new Todo());
-        given(mapper.todoToTodoResponseDto(Mockito.any(Todo.class))).willReturn(response);
+        given(mapper.todoToTodoResponseDto(Mockito.any(Todo.class), Mockito.anyString())).willReturn(response);
 
         // when
         ResultActions actions = mockMvc.perform(post("/")
@@ -80,7 +80,8 @@ public class TodoControllerRestDocs {
                                 List.of(fieldWithPath("id").type(JsonFieldType.NUMBER).description("고유 식별자"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("할 일 제목"),
                                         fieldWithPath("order").type(JsonFieldType.NUMBER).description("우선 순위"),
-                                        fieldWithPath("completed").type(JsonFieldType.BOOLEAN).description("완료 여부")
+                                        fieldWithPath("completed").type(JsonFieldType.BOOLEAN).description("완료 여부"),
+                                        fieldWithPath("url").type(JsonFieldType.STRING).description("todo url")
                                 )
                         )
                 ));
@@ -90,12 +91,12 @@ public class TodoControllerRestDocs {
     void getAllList() throws Exception {
         // given
         List<TodoDto.Response> responses = List.of(
-                new TodoDto.Response(1, "자바 공부하기", 1, false),
-                new TodoDto.Response(2, "파이썬 공부하기", 2, false)
+                new TodoDto.Response(1, "자바 공부하기", 1, false, "http://localhost:8080/1"),
+                new TodoDto.Response(2, "파이썬 공부하기", 2, false, "http://localhost:8080/2")
         );
 
         given(todoService.getAllTodoList()).willReturn(new ArrayList<>());
-        given(mapper.todoToTodoResponseDto(Mockito.anyList())).willReturn(responses);
+        given(mapper.todoToTodoResponseDto(Mockito.anyList(), Mockito.anyString())).willReturn(responses);
 
         // when
         ResultActions actions = mockMvc.perform(get("/")
@@ -111,7 +112,8 @@ public class TodoControllerRestDocs {
                                 List.of(fieldWithPath("[].id").type(JsonFieldType.NUMBER).description("고유 식별자"),
                                         fieldWithPath("[].title").type(JsonFieldType.STRING).description("할 일 제목"),
                                         fieldWithPath("[].order").type(JsonFieldType.NUMBER).description("우선 순위"),
-                                        fieldWithPath("[].completed").type(JsonFieldType.BOOLEAN).description("완료 여부")
+                                        fieldWithPath("[].completed").type(JsonFieldType.BOOLEAN).description("완료 여부"),
+                                        fieldWithPath("[].url").type(JsonFieldType.STRING).description("todo url")
                                 ))
                 ));
     }
@@ -120,10 +122,10 @@ public class TodoControllerRestDocs {
     void getTodoList() throws Exception {
         // given
         long todolistId = 1L;
-        TodoDto.Response response = new TodoDto.Response(todolistId, "자바 공부하기", 1, false);
+        TodoDto.Response response = new TodoDto.Response(todolistId, "자바 공부하기", 1, false, "http://localhost:8080/1");
 
         given(todoService.findTodoById(Mockito.anyLong())).willReturn(new Todo());
-        given(mapper.todoToTodoResponseDto(Mockito.any(Todo.class))).willReturn(response);
+        given(mapper.todoToTodoResponseDto(Mockito.any(Todo.class), Mockito.anyString())).willReturn(response);
 
         // when
         ResultActions actions = mockMvc.perform(get("/{id}", todolistId)
@@ -144,7 +146,8 @@ public class TodoControllerRestDocs {
                                 List.of(fieldWithPath("id").type(JsonFieldType.NUMBER).description("고유 식별자"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("할 일 제목"),
                                         fieldWithPath("order").type(JsonFieldType.NUMBER).description("우선 순위"),
-                                        fieldWithPath("completed").type(JsonFieldType.BOOLEAN).description("완료 여부")
+                                        fieldWithPath("completed").type(JsonFieldType.BOOLEAN).description("완료 여부"),
+                                        fieldWithPath("url").type(JsonFieldType.STRING).description("todo url")
                                 )
                         )
                 ));
@@ -155,12 +158,12 @@ public class TodoControllerRestDocs {
         // given
         long todolistId = 1L;
         TodoDto.Patch patch = new TodoDto.Patch("자바 공부하기", 1, true);
-        TodoDto.Response response = new TodoDto.Response(todolistId, "자바 공부하기", 1, true);
+        TodoDto.Response response = new TodoDto.Response(todolistId, "자바 공부하기", 1, true, "http://localhost:8080/1");
         String content = gson.toJson(patch).replace("todoOrder", "order");
 
         given(mapper.todoPatchDtoToTodo(Mockito.any(TodoDto.Patch.class))).willReturn(new Todo());
         given(todoService.updateTodo(Mockito.any(Todo.class))).willReturn(new Todo());
-        given(mapper.todoToTodoResponseDto(Mockito.any(Todo.class))).willReturn(response);
+        given(mapper.todoToTodoResponseDto(Mockito.any(Todo.class), Mockito.anyString())).willReturn(response);
 
         // when
         ResultActions actions = mockMvc.perform(patch("/{id}", todolistId)
@@ -189,7 +192,8 @@ public class TodoControllerRestDocs {
                                 List.of(fieldWithPath("id").type(JsonFieldType.NUMBER).description("고유 식별자"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("할 일 제목"),
                                         fieldWithPath("order").type(JsonFieldType.NUMBER).description("우선 순위"),
-                                        fieldWithPath("completed").type(JsonFieldType.BOOLEAN).description("완료 여부")
+                                        fieldWithPath("completed").type(JsonFieldType.BOOLEAN).description("완료 여부"),
+                                        fieldWithPath("url").type(JsonFieldType.STRING).description("todo url")
                                 )
                         )
                 ));
